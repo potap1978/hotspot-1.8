@@ -62,4 +62,6 @@ apt-get install grase-www-portal grase-conf-freeradius
 http://192.168.1.200/grase/radmin
 http://10.1.0.1/grase/radmin
 
+В Network Settings обязательно нажать кнопку Save Settings Что бы в базе сохранился интерфес "ЕСЛИ ОН БЫЛ ЗАМЕНЁН с eth1 на какой то другой"
+
 admin - hotspotadmin
