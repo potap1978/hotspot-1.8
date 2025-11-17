@@ -1,0 +1,47 @@
+https://grasehotspot.org/
+--------------------------
+
+Дополнил 17,11,2025
+sudo apt-get install ethtool
+Копируй файл solvenetwork.sh в /etc/init.d/
+sudo chmod +x /etc/init.d/solvenetwork.sh
+sudo update-rc.d solvenetwork.sh defaults
+---------------------------------------
+
+ubuntu 14.04 x64
+----------------
+ЭТО НЕ НУЖНО 11.04.2024 - "ОБЯЗАТЕЛЬНО УСТАНАВЛИВАЕМ  - - - LAMP - - - "
+------------------
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet static
+        address 192.168.1.200
+        netmask 255.255.255.0
+        network 192.168.1.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 192.168.1.1
+
+auth eth1
+
+или, нужно проверить - 11.04.2024
+
+auth eth1
+iface eth1 inet manual
+
+------------------------
+
+wget http://packages.grasehotspot.org/pool/main/g/grase-repo/grase-repo_1.8_all.deb
+dpkg -i grase-repo_1.8_all.deb
+apt-get update
+apt-get install grase-www-portal grase-conf-freeradius
+
+http://192.168.1.200/grase/radmin
+
+http://10.1.0.1/grase/radmin
+
+admin - hotspotadmin

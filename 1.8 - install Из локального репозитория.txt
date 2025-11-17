@@ -1,0 +1,65 @@
+https://grasehotspot.org/
+-------------------------------------
+
+Дополнил 17,11,2025
+sudo apt-get install ethtool
+Копируй файл solvenetwork.sh в /etc/init.d/
+sudo chmod +x /etc/init.d/solvenetwork.sh
+sudo update-rc.d solvenetwork.sh defaults
+---------------------------------------
+
+ubuntu 14.04 x64
+----------------
+ЭТО НЕ НУЖНО 11.04.2024 - "ОБЯЗАТЕЛЬНО УСТАНАВЛИВАЕМ  - - - LAMP - - - "
+------------------
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet static
+        address 192.168.1.200
+        netmask 255.255.255.0
+        network 192.168.1.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 192.168.1.1
+
+auth eth1
+
+или, нужно проверить - 11.04.2024
+
+auth eth1
+iface eth1 inet manual
+
+для VLAN вот так, с начала устанави 
+apt-get install vlan
+Добавь модуль в автозагрузку
+modprobe 8021q
+sh -c 'grep -q 8021q /etc/modules || echo 8021q >> /etc/modules'
+
+#vlan 200
+auto eth0.200
+iface eth0.200 inet manual
+vlan_raw_device eth0
+
+------------------------
+Копируем файл "Captiv-Portal_REPO.tar.gz" в Ubuntu, Распаковываем
+tar xvfz Captiv-Portal_REPO.tar.gz
+mv ./mirror /home/mirror/
+
+
+touch /etc/apt/sources.list.d/grasehotspot.list
+echo "deb file:///home/mirror/packages.grasehotspot.org purewhite main" > /etc/apt/sources.list.d/grasehotspot.list
+
+копируем ключ на Репозиторий "grase.hotspot.2020.gpg" в
+mv ./grase.hotspot.2020.gpg /etc/apt/trusted.gpg.d/
+
+apt update
+apt-get install grase-www-portal grase-conf-freeradius
+
+http://192.168.1.200/grase/radmin
+http://10.1.0.1/grase/radmin
+
+admin - hotspotadmin
